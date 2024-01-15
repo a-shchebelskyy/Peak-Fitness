@@ -8,51 +8,61 @@ const Layout = () => {
   return (
     <Tabs
       screenOptions={{
+        tabBarInactiveTintColor: '#9CA3AF',
         tabBarActiveTintColor: Colors.primary,
-        tabBarLabelStyle: {
-          fontFamily: 'mon-sb',
+        tabBarShowLabel: false,
+        //tabBarBackground: ,
+        tabBarStyle: {
+          height: 60,
+          borderRadius: 40,
+          borderTopWidth: 0,
+          shadowColor: '#000000',
+          shadowOffset: {width: 0, height: -8},
+          shadowOpacity: 0.1,
+          shadowRadius: 22,
+          marginBottom: 34,
+          marginHorizontal: 16,
+          paddingBottom: 0,
+          backgroundColor: '#ffffff',
+          position: 'absolute',
         },
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          tabBarLabel: 'Explore',
-          tabBarIcon: ({ size, color }) => <Ionicons name="search" size={size} color={color} />,
+          tabBarIcon: ({ size, color }) => <Ionicons name="home-outline" size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="whishlists"
         options={{
-          tabBarLabel: 'Wishlists',
           tabBarIcon: ({ size, color }) => (
-            <Ionicons name="heart-outline" size={size} color={color} />
+            <Ionicons name="search-outline" size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="trips"
         options={{
-          tabBarLabel: 'Trips',
-          tabBarIcon: ({ size, color }) => <FontAwesome5 name="airbnb" size={size} color={color} />,
+          tabBarIcon: ({ size, color }) => (
+          <Ionicons name="flash-outline" size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="inbox"
         options={{
-          tabBarLabel: 'Inbox',
           tabBarIcon: ({ size, color }) => (
-            <MaterialCommunityIcons name="message-outline" size={size} color={color} />
+            <Ionicons name="bar-chart-outline" size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
-          tabBarLabel: 'Profile',
-
           headerShown: false,
           tabBarIcon: ({ size, color }) => (
-            <Ionicons name="person-circle-outline" size={size} color={color} />
+            <Ionicons name="person-outline" size={size} color={color} />
           ),
         }}
       />

@@ -42,54 +42,65 @@ const Page = () => {
 
   return (
     <View style={styles.container}>
+      <View
+        style={styles.headerContainer}
+      >
+        <Text style={styles.header}>
+          Sign In
+        </Text>
+        <Text style={styles.subheader}>
+          Let's sign in to your Peak profile
+        </Text>
+      </View>
+      
       <TextInput
         autoCapitalize="none"
         placeholder="Email"
-        style={[defaultStyles.inputField, { marginBottom: 30 }]}
+        style={[defaultStyles.inputField, { marginBottom: 24 }]}
       />
 
       <TouchableOpacity style={defaultStyles.btn}>
-        <Text style={defaultStyles.btnText}>Continue</Text>
+        <Text style={defaultStyles.btnText}>Sign In</Text>
       </TouchableOpacity>
 
       <View style={styles.seperatorView}>
         <View
           style={{
             flex: 1,
-            borderBottomColor: 'black',
+            borderBottomColor: Colors.grey,
             borderBottomWidth: StyleSheet.hairlineWidth,
           }}
         />
-        <Text style={styles.seperator}>or</Text>
+        <Text style={styles.seperator}>or sign in with</Text>
         <View
           style={{
             flex: 1,
-            borderBottomColor: 'black',
+            borderBottomColor: Colors.grey,
             borderBottomWidth: StyleSheet.hairlineWidth,
           }}
         />
       </View>
 
       <View style={{ gap: 20 }}>
-        <TouchableOpacity style={styles.btnOutline}>
+        {/* <TouchableOpacity style={styles.btnOutline}>
           <Ionicons name="mail-outline" size={24} style={defaultStyles.btnIcon} />
           <Text style={styles.btnOutlineText}>Continue with Phone</Text>
+        </TouchableOpacity> */}
+
+        <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Google)}>
+          <Ionicons name="md-logo-google" size={24} style={defaultStyles.btnIcon} />
+          <Text style={styles.btnOutlineText}>Sign in with Google</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Apple)}>
           <Ionicons name="md-logo-apple" size={24} style={defaultStyles.btnIcon} />
-          <Text style={styles.btnOutlineText}>Continue with Apple</Text>
+          <Text style={styles.btnOutlineText}>Sign in with Apple</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Google)}>
-          <Ionicons name="md-logo-google" size={24} style={defaultStyles.btnIcon} />
-          <Text style={styles.btnOutlineText}>Continue with Google</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Facebook)}>
+        {/* <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Facebook)}>
           <Ionicons name="md-logo-facebook" size={24} style={defaultStyles.btnIcon} />
           <Text style={styles.btnOutlineText}>Continue with Facebook</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );
@@ -101,7 +112,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 26,
+    padding: 24,
   },
 
   seperatorView: {
@@ -111,24 +122,43 @@ const styles = StyleSheet.create({
     marginVertical: 30,
   },
   seperator: {
-    fontFamily: 'mon-sb',
-    color: Colors.grey,
+    fontFamily: 'mon',
+    color: '#6B7280', 
     fontSize: 16,
   },
   btnOutline: {
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: Colors.grey,
-    height: 50,
-    borderRadius: 8,
+    height: 56,
+    borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingHorizontal: 10,
+    paddingHorizontal: 16,
+    gap: 12,
   },
   btnOutlineText: {
     color: '#000',
     fontSize: 16,
     fontFamily: 'mon-sb',
+  },
+  headerContainer: {
+    marginTop: 20,
+    marginBottom: 30,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 8,
+  },
+  header: {
+    color: '#111827',
+    fontFamily: 'mon-sb',
+    fontSize: 28,
+  },
+  subheader: {
+    color: '#6B7280',
+    fontFamily: 'mon',
+    fontSize: 16,
   },
 });

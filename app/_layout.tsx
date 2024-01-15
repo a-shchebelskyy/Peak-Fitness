@@ -76,7 +76,7 @@ function RootLayoutNav() {
         name="(modals)/login"
         options={{
           presentation: 'modal',
-          title: 'Log in or sign up',
+          title: '',
           headerTitleStyle: {
             fontFamily: 'mon-sb',
           },
@@ -106,7 +106,7 @@ function RootLayoutNav() {
                 borderWidth: 1,
                 padding: 4,
               }}>
-              <Ionicons name="close-outline" size={22} />
+              <Ionicons name="close-outline" size={24} />
             </TouchableOpacity>
           ),
         }}

@@ -71,15 +71,21 @@ const Page = () => {
     <SafeAreaView style={defaultStyles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Profile</Text>
-        <Ionicons name="notifications-outline" size={26} />
+        {isSignedIn && 
+          <TouchableOpacity onPress={() => signOut()}>
+            <Ionicons name="log-out-outline" size={28} />
+          </TouchableOpacity>}
       </View>
 
       {user && (
         <View style={styles.card}>
+          <Image source={{ uri: user?.imageUrl }} style={styles.avatar} />
           <TouchableOpacity onPress={onCaptureImage}>
-            <Image source={{ uri: user?.imageUrl }} style={styles.avatar} />
+            <Text style={styles.editText}>
+              Change Photo
+            </Text>
           </TouchableOpacity>
-          <View style={{ flexDirection: 'row', gap: 6 }}>
+          {/* <View style={{ flexDirection: 'row', gap: 6 }}>
             {!edit && (
               <View style={styles.editRow}>
                 <Text style={{ fontFamily: 'mon-b', fontSize: 22 }}>
@@ -111,11 +117,11 @@ const Page = () => {
             )}
           </View>
           <Text>{email}</Text>
-          <Text>Since {user?.createdAt!.toLocaleDateString()}</Text>
+          <Text>Since {user?.createdAt!.toLocaleDateString()}</Text> */}
         </View>
       )}
 
-      {isSignedIn && <Button title="Log Out" onPress={() => signOut()} color={Colors.dark} />}
+      {/* {isSignedIn && <Button title="Log Out" onPress={() => signOut()} color={Colors.dark} />} */}
       {!isSignedIn && (
         <Link href={'/(modals)/login'} asChild>
           <Button title="Log In" color={Colors.dark} />
@@ -132,32 +138,28 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   header: {
-    fontFamily: 'mon-b',
-    fontSize: 24,
+    fontFamily: 'mon-sb',
+    fontSize: 28,
   },
   card: {
     backgroundColor: '#fff',
-    padding: 24,
+    padding: 20,
     borderRadius: 16,
     marginHorizontal: 24,
-    marginTop: 24,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-    shadowOffset: {
-      width: 1,
-      height: 2,
-    },
+    marginTop: 16,
     alignItems: 'center',
-    gap: 14,
-    marginBottom: 24,
+    gap: 12,
   },
   avatar: {
-    width: 100,
-    height: 100,
+    width: 88,
+    height: 88,
     borderRadius: 50,
     backgroundColor: Colors.grey,
+  },
+  editText: {
+    color: Colors.primary,
+    fontFamily: 'mon-sb',
+    fontSize: 14,
   },
   editRow: {
     flex: 1,
