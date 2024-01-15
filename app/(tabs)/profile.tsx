@@ -78,46 +78,137 @@ const Page = () => {
       </View>
 
       {user && (
-        <View style={styles.card}>
-          <Image source={{ uri: user?.imageUrl }} style={styles.avatar} />
-          <TouchableOpacity onPress={onCaptureImage}>
-            <Text style={styles.editText}>
-              Change Photo
-            </Text>
-          </TouchableOpacity>
-          {/* <View style={{ flexDirection: 'row', gap: 6 }}>
-            {!edit && (
-              <View style={styles.editRow}>
-                <Text style={{ fontFamily: 'mon-b', fontSize: 22 }}>
-                  {firstName} {lastName}
-                </Text>
-                <TouchableOpacity onPress={() => setEdit(true)}>
-                  <Ionicons name="create-outline" size={24} color={Colors.dark} />
-                </TouchableOpacity>
-              </View>
-            )}
-            {edit && (
-              <View style={styles.editRow}>
-                <TextInput
-                  placeholder="First Name"
-                  value={firstName || ''}
-                  onChangeText={setFirstName}
-                  style={[defaultStyles.inputField, { width: 100 }]}
-                />
-                <TextInput
-                  placeholder="Last Name"
-                  value={lastName || ''}
-                  onChangeText={setLastName}
-                  style={[defaultStyles.inputField, { width: 100 }]}
-                />
-                <TouchableOpacity onPress={onSaveUser}>
-                  <Ionicons name="checkmark-outline" size={24} color={Colors.dark} />
-                </TouchableOpacity>
-              </View>
-            )}
+        <View>
+          <View style={styles.card}>
+            <Image source={{ uri: user?.imageUrl }} style={styles.avatar} />
+            <TouchableOpacity onPress={onCaptureImage}>
+              <Text style={styles.editText}>
+                Change Photo
+              </Text>
+            </TouchableOpacity>
+            {/* <View style={{ flexDirection: 'row', gap: 6 }}>
+              {!edit && (
+                <View style={styles.editRow}>
+                  <Text style={{ fontFamily: 'mon-b', fontSize: 22 }}>
+                    {firstName} {lastName}
+                  </Text>
+                  <TouchableOpacity onPress={() => setEdit(true)}>
+                    <Ionicons name="create-outline" size={24} color={Colors.dark} />
+                  </TouchableOpacity>
+                </View>
+              )}
+              {edit && (
+                <View style={styles.editRow}>
+                  <TextInput
+                    placeholder="First Name"
+                    value={firstName || ''}
+                    onChangeText={setFirstName}
+                    style={[defaultStyles.inputField, { width: 100 }]}
+                  />
+                  <TextInput
+                    placeholder="Last Name"
+                    value={lastName || ''}
+                    onChangeText={setLastName}
+                    style={[defaultStyles.inputField, { width: 100 }]}
+                  />
+                  <TouchableOpacity onPress={onSaveUser}>
+                    <Ionicons name="checkmark-outline" size={24} color={Colors.dark} />
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
+            <Text>{email}</Text>
+            <Text>Since {user?.createdAt!.toLocaleDateString()}</Text> */}
           </View>
-          <Text>{email}</Text>
-          <Text>Since {user?.createdAt!.toLocaleDateString()}</Text> */}
+          <View style={styles.frame}>
+            <View style={styles.element}>
+              <View>
+                <Text style={styles.icon}>
+                  🏃
+                </Text>
+              </View>
+              <Text style={styles.statText}>
+                1200 Steps
+              </Text>
+
+            </View>
+            <View style={styles.element}>
+              <View>
+                <Text style={styles.icon}>
+                  💧
+                </Text>
+              </View>
+              <Text style={styles.statText}>
+                2000 ml
+              </Text>
+            </View>
+            <View style={styles.element}>
+              <View>
+                <Text style={styles.icon}>
+                  🔥
+                </Text>
+              </View>
+              <Text style={styles.statText}>
+                500 kcal
+              </Text>
+            </View>
+          </View>
+          <View style={styles.settings}>
+            <TouchableOpacity style={styles.row} onPress={onCaptureImage}>
+              <View style={styles.item}>
+                <Ionicons name="person-circle-outline" size={28} color={'#374151'}/>
+                <Text style={styles.itemText}>
+                  My Profile
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.row} onPress={onCaptureImage}>
+              <View style={styles.item}>
+                <Ionicons name="ribbon-outline" size={28} color={'#374151'}/>
+                <Text style={styles.itemText}>
+                  My Membership
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.row} onPress={onCaptureImage}>
+              <View style={styles.item}>
+                <Ionicons name="notifications-outline" size={28} color={'#374151'}/>
+                <Text style={styles.itemText}>
+                  Notification Settings
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.row} onPress={onCaptureImage}>
+              <View style={styles.item}>
+                <Ionicons name="language-outline" size={28} color={'#374151'}/>
+                <Text style={styles.itemText}>
+                  Language Settings
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.row} onPress={onCaptureImage}>
+              <View style={styles.item}>
+                <Ionicons name="card-outline" size={28} color={'#374151'}/>
+                <Text style={styles.itemText}>
+                Payment Methods
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.row} onPress={onCaptureImage}>
+              <View style={styles.item}>
+                <Ionicons name="help-circle-outline" size={28} color={'#374151'}/>
+                <Text style={styles.itemText}>
+                  FAQ
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
+            </TouchableOpacity>
+          </View>
         </View>
       )}
 
@@ -167,6 +258,66 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
+  },
+  frame: {
+    justifyContent: 'center',
+    //alignItems: 'flex-start',
+    flexDirection: 'row',
+    marginBottom: 20,
+    paddingHorizontal: 36,
+    gap: 20,
+  },
+  element: {
+    display: 'flex',
+    padding: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8,
+  },
+  icon: {
+    fontSize: 24,
+  },
+  statText: {
+    color: '#111827',
+    fontFamily: 'mon-sb',
+    fontSize: 16,
+  },
+  elementLabel: {
+    color: '#9CA3AF',
+    fontFamily: 'mon-sb',
+    fontSize: 12,
+  },
+  settings: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginHorizontal: 24,
+    paddingHorizontal: 14,
+    //gap: 16,
+    borderRadius: 12,
+    borderColor: '#F3F4F6',
+    backgroundColor: '#F9FAFB',
+  },
+  row: {
+    display: 'flex',
+    flexDirection: 'row',
+    paddingVertical: 16,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    borderBottomWidth: 1,
+    borderColor: '#E5E7EB',
+  },
+  item: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+  },
+  itemText: {
+    color: '#374151',
+    fontFamily: 'mon-sb',
+    fontSize: 14,
   },
 });
 
