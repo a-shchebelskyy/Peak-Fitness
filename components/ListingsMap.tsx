@@ -10,6 +10,7 @@ import * as Location from 'expo-location';
 
 interface Props {
   listings: any;
+  category: string;
 }
 
 const INITIAL_REGION = {
@@ -19,7 +20,7 @@ const INITIAL_REGION = {
   longitudeDelta: 9,
 };
 
-const ListingsMap = memo(({ listings }: Props) => {
+const ListingsMap = memo(({ listings, category }: Props) => {
   const router = useRouter();
   const mapRef = useRef<any>(null);
 

@@ -13,7 +13,6 @@ import { useAuth, useUser } from '@clerk/clerk-expo';
 import { defaultStyles } from '@/constants/Styles';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
-import { Link } from 'expo-router';
 import * as ImagePicker from 'expo-image-picker';
 
 const Page = () => {
@@ -67,10 +66,6 @@ const Page = () => {
     }
   };
 
-  const navigateTo = async () => {
-
-  };
-
   return (
     <SafeAreaView style={defaultStyles.container}>
       <View style={styles.headerContainer}>
@@ -82,7 +77,6 @@ const Page = () => {
       </View>
 
       {user && (
-        <View>
           <View style={styles.card}>
             <Image source={{ uri: user?.imageUrl }} style={styles.avatar} />
             <TouchableOpacity onPress={onCaptureImage}>
@@ -123,118 +117,7 @@ const Page = () => {
             </View>
             <Text>{email}</Text>
             <Text>Since {user?.createdAt!.toLocaleDateString()}</Text> */}
-          </View>
-          <View style={styles.frame}>
-            <View style={styles.element}>
-              <View style={styles.circle}>
-                <Text style={styles.icon}>
-                  🏃
-                </Text>
-              </View>
-              <View style={styles.labels}>
-                <Text style={styles.statText}>
-                  1200
-                </Text>
-                <Text style={styles.elementLabel}>
-                  steps
-                </Text>
-              </View>
-            </View>
-            <View style={styles.element}>
-              <View style={styles.circle}>
-                <Text style={styles.icon}>
-                  💧
-                </Text>
-              </View>
-              <View style={styles.labels}>
-                <Text style={styles.statText}>
-                  2000
-                </Text>
-                <Text style={styles.elementLabel}>
-                  ml
-                </Text>
-              </View>
-            </View>
-            <View style={styles.element}>
-              <View style={styles.circle}>
-                <Text style={styles.icon}>
-                  🔥
-                </Text>
-              </View>
-              <View style={styles.labels}>
-                <Text style={styles.statText}>
-                  500
-                </Text>
-                <Text style={styles.elementLabel}>
-                  cals
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.settings}>
-            <TouchableOpacity style={[styles.row, {borderBottomWidth: 1}]}>
-              <View style={styles.item}>
-                <Ionicons name="person-circle-outline" size={28} color={'#374151'}/>
-                <Text style={styles.itemText}>
-                  My Profile
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.row, {borderBottomWidth: 1}]}>
-              <View style={styles.item}>
-                <Ionicons name="ribbon-outline" size={28} color={'#374151'}/>
-                <Text style={styles.itemText}>
-                  My Membership
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.row, {borderBottomWidth: 1}]}>
-              <View style={styles.item}>
-                <Ionicons name="notifications-outline" size={28} color={'#374151'}/>
-                <Text style={styles.itemText}>
-                  Notification Settings
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.row, {borderBottomWidth: 1}]}>
-              <View style={styles.item}>
-                <Ionicons name="language-outline" size={28} color={'#374151'}/>
-                <Text style={styles.itemText}>
-                  Language Settings
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.row, {borderBottomWidth: 1}]}>
-              <View style={styles.item}>
-                <Ionicons name="card-outline" size={28} color={'#374151'}/>
-                <Text style={styles.itemText}>
-                Payment Methods
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.row}>
-              <View style={styles.item}>
-                <Ionicons name="help-circle-outline" size={28} color={'#374151'}/>
-                <Text style={styles.itemText}>
-                  FAQ
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
-            </TouchableOpacity>
-          </View>
         </View>
-      )}
-
-      {/* {isSignedIn && <Button title="Log Out" onPress={() => signOut()} color={Colors.dark} />} */}
-      {!isSignedIn && (
-        <Link href={'/(modals)/login'} asChild>
-          <Button title="Log In" color={Colors.dark} />
-        </Link>
       )}
     </SafeAreaView>
   );

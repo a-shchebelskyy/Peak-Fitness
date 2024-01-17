@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ListRenderItem, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ListRenderItem, TouchableOpacity, FlatList } from 'react-native';
 import { defaultStyles } from '@/constants/Styles';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Listings = ({ listings: items, refresh, category }: Props) => {
-  const listRef = useRef<BottomSheetFlatListMethods>(null);
+  const listRef = useRef<FlatList>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   // Update the view to scroll the list back top
@@ -64,7 +64,7 @@ const Listings = ({ listings: items, refresh, category }: Props) => {
 
   return (
     <View style={defaultStyles.container}>
-      <BottomSheetFlatList
+      <FlatList
         renderItem={renderRow}
         data={loading ? [] : items}
         ref={listRef}

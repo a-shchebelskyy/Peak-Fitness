@@ -8,32 +8,48 @@ import { Link } from 'expo-router';
 
 const categories = [
   {
-    name: 'Tiny homes',
-    icon: 'home',
+    name: 'All',
+    icon: 'globe-outline',
   },
   {
-    name: 'Cabins',
-    icon: 'house-siding',
+    name: 'Running',
+    icon: 'walk-outline',
   },
   {
-    name: 'Trending',
-    icon: 'local-fire-department',
+    name: 'Cycling',
+    icon: 'bicycle-outline',
   },
   {
-    name: 'Play',
-    icon: 'videogame-asset',
+    name: 'Weightlifting',
+    icon: 'barbell-outline',
   },
   {
-    name: 'City',
-    icon: 'apartment',
+    name: 'Yoga',
+    icon: 'body-outline',
   },
   {
-    name: 'Beachfront',
-    icon: 'beach-access',
+    name: 'Soccer',
+    icon: 'football-outline',
   },
   {
-    name: 'Countryside',
-    icon: 'nature-people',
+    name: 'Basketball',
+    icon: 'basketball-outline',
+  },
+  {
+    name: 'Football',
+    icon: 'american-football-outline',
+  },
+  {
+    name: 'Baseball',
+    icon: 'baseball-outline',
+  },
+  {
+    name: 'Tennis',
+    icon: 'tennisball-outline',
+  },
+  {
+    name: 'Golf',
+    icon: 'golf-outline',
   },
 ];
 
@@ -91,10 +107,10 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
               key={index}
               style={activeIndex === index ? styles.categoriesBtnActive : styles.categoriesBtn}
               onPress={() => selectCategory(index)}>
-              <MaterialIcons
+              <Ionicons
                 name={item.icon as any}
                 size={24}
-                color={activeIndex === index ? '#000' : Colors.grey}
+                color={activeIndex === index ? Colors.primary : Colors.grey}
               />
               <Text style={activeIndex === index ? styles.categoryTextActive : styles.categoryText}>
                 {item.name}
@@ -161,7 +177,7 @@ const styles = StyleSheet.create({
   categoryTextActive: {
     fontSize: 14,
     fontFamily: 'mon-sb',
-    color: '#000',
+    color: Colors.primary,
   },
   categoriesBtn: {
     flex: 1,
@@ -173,7 +189,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderBottomColor: '#000',
+    borderBottomColor: Colors.primary,
     borderBottomWidth: 2,
     paddingBottom: 8,
   },

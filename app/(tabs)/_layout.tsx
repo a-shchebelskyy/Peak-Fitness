@@ -11,7 +11,6 @@ const Layout = () => {
         tabBarInactiveTintColor: '#9CA3AF',
         tabBarActiveTintColor: Colors.primary,
         tabBarShowLabel: false,
-        //tabBarBackground: ,
         tabBarStyle: {
           height: 60,
           borderRadius: 40,
@@ -20,8 +19,8 @@ const Layout = () => {
           shadowOffset: {width: 0, height: -8},
           shadowOpacity: 0.1,
           shadowRadius: 22,
-          marginBottom: 34,
-          marginHorizontal: 16,
+          marginBottom: 24,
+          marginHorizontal: 10,
           paddingBottom: 0,
           backgroundColor: '#ffffff',
           position: 'absolute',
@@ -30,6 +29,8 @@ const Layout = () => {
       <Tabs.Screen
         name="index"
         options={{
+          //headerTitle: '',
+          headerShown: false,
           tabBarIcon: ({ size, color }) => <Ionicons name="home-outline" size={size} color={color} />,
         }}
       />
