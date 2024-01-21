@@ -51,9 +51,10 @@ const Page = () => {
   };
 
   return (
-    <BlurView intensity={70} style={styles.container} tint="light">
+    // <BlurView intensity={70} style={styles.container} tint="light">
+    <View style={styles.container}>
       {/*  Where */}
-      <View style={styles.card}>
+      {/* <View style={styles.card}>
         {openCard != 0 && (
           <AnimatedTouchableOpacity
             onPress={() => setOpenCard(0)}
@@ -93,10 +94,10 @@ const Page = () => {
             </ScrollView>
           </Animated.View>
         )}
-      </View>
+      </View> */}
 
       {/* When */}
-      <View style={styles.card}>
+      {/* <View style={styles.card}>
         {openCard != 1 && (
           <AnimatedTouchableOpacity
             onPress={() => setOpenCard(1)}
@@ -125,10 +126,10 @@ const Page = () => {
             />
           </Animated.View>
         )}
-      </View>
+      </View> */}
 
       {/* Guests */}
-      <View style={styles.card}>
+      {/* <View style={styles.card}>
         {openCard != 2 && (
           <AnimatedTouchableOpacity
             onPress={() => setOpenCard(2)}
@@ -201,10 +202,10 @@ const Page = () => {
             ))}
           </Animated.View>
         )}
-      </View>
+      </View> */}
 
       {/* Footer */}
-      <Animated.View style={defaultStyles.footer} entering={SlideInDown.delay(200)}>
+      {/* <Animated.View style={defaultStyles.footer} entering={SlideInDown.delay(200)}>
         <View
           style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <TouchableOpacity
@@ -232,8 +233,9 @@ const Page = () => {
             <Text style={defaultStyles.btnText}>Search</Text>
           </TouchableOpacity>
         </View>
-      </Animated.View>
-    </BlurView>
+      </Animated.View> */}
+    </View>
+    // </BlurView>
   );
 };
 

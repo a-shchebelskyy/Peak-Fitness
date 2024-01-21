@@ -1,5 +1,5 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import React, { useMemo, useEffect, useState } from 'react';
+import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
+import React, { useMemo, useEffect, useRef, useState } from 'react';
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import ListingsBottomSheet from '@/components/ListingsBottomSheet';
 import listingsData from '@/assets/data/airbnb-listings.json';
@@ -10,6 +10,8 @@ import ExploreHeader from '@/components/ExploreHeader';
 import Colors from '@/constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
+// @ts-ignore
+import DatePicker from 'react-native-modern-datepicker';
 
 const events = [
   {
@@ -31,10 +33,12 @@ const events = [
 
 const Page = () => {
   const { user } = useUser();
+  const scrollRef = useRef<ScrollView>(null);
   const items = useMemo(() => listingsData as any, []);
   const getoItems = useMemo(() => listingsDataGeo, []);
   const [category, setCategory] = useState<string>('Tiny homes');
   const [firstName, setFirstName] = useState(user?.firstName);
+  const today = new Date().toISOString().substring(0, 10);
 
   const onDataChanged = (category: string) => {
     setCategory(category);
@@ -50,7 +54,15 @@ const Page = () => {
   }, [user]);
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#FFFFFF', paddingTop: 44, paddingHorizontal: 24,}}>
+    <ScrollView
+          ref={scrollRef}
+          contentContainerStyle={{
+            //flex: 1,
+            backgroundColor: '#FFFFFF',
+            paddingHorizontal: 24,
+            paddingVertical: 24,
+          }}>
+        
       {/* Define pour custom header */}
       {/* <Stack.Screen
         options={{
@@ -59,29 +71,32 @@ const Page = () => {
       /> */}
       {/* <ListingsMap listings={getoItems} /> */}
       {/* <ListingsBottomSheet listings={items} category={category} /> */}
-      <View style={styles.header}>
-        <View style={styles.greetingContainer}>
-        <Text style={styles.heading}>
-          Hello,
-        </Text>
-        <Text style={styles.name}>
-          {firstName}
-        </Text>
-        </View>
-        <Image source={{ uri: user?.imageUrl }} style={styles.avatar} />
-      </View>
+          <DatePicker
+            options={{
+              defaultFont: 'mon',
+              headerFont: 'mon-sb',
+              textHeaderColor: '#111827',
+              textSecondaryColor: '#9CA3AF',
+              mainColor: '#111827',
+              backgroundColor: '#F9FAFB',
+              borderColor: 'transparent',
+            }}
+            current={today}
+            selected={today}
+            //onSelectedChange={date => setSelectedDate(date)}
+            mode={'calendar'}
+            style={{ borderRadius: 20, }}
+          />
       <View>
         <View style={styles.headingContainer}>
           <Text style={styles.heading}>
-            Upcoming Activities
+            Schedule
           </Text>
-          <Link href={'/(modals)/schedule'} asChild>
-            <Text style={styles.link}>
-              View All
-            </Text>
-          </Link>
+          <Text style={styles.date}>
+            {today}
+          </Text>
         </View>
-        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 16, }}>
+        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 24, }}>
           <View style={{ alignItems: 'center' }}>
             <View style={{ height: 24, width: 24, borderColor: Colors.primary, borderWidth: 4, borderRadius: 12 }}/>
             <View style={{ height: 88, width: 2, borderColor: Colors.grey, borderWidth: 1, borderStyle: 'dashed', }}/>
@@ -111,22 +126,13 @@ const Page = () => {
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: 22,
-    marginBottom: 26,
-  },
-  greetingContainer: {
-    flexDirection: 'row',
-    gap: 4,
+  cardBody: {
+    marginVertical: 32,
   },
   heading: {
     fontFamily: 'mon-sb',
@@ -136,8 +142,8 @@ const styles = StyleSheet.create({
     fontFamily: 'mon',
     fontSize: 16,
   },
-  link: {
-    color: Colors.primary,
+  date: {
+    color: '#96A0B5',
     fontFamily: 'mon',
     fontSize: 14,
   },
@@ -148,9 +154,8 @@ const styles = StyleSheet.create({
   },
   headingContainer: {
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    marginTop: 24,
   },
   list: {
     display: 'flex',

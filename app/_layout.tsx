@@ -75,7 +75,7 @@ function RootLayoutNav() {
       <Stack.Screen
         name="(modals)/login"
         options={{
-          presentation: 'modal',
+          presentation: 'card',
           title: '',
           headerTitleStyle: {
             fontFamily: 'mon-sb',
@@ -87,6 +87,21 @@ function RootLayoutNav() {
           ),
         }}
       />
+      <Stack.Screen
+        name="(modals)/onboarding"
+        options={{
+          presentation: 'card',
+          title: 'Lets get yo know you',
+          headerTitleStyle: {
+            fontFamily: 'mon-sb',
+          },
+          // headerLeft: () => (
+          //   <TouchableOpacity onPress={() => router.back()}>
+          //     <Ionicons name="close-outline" size={28} />
+          //   </TouchableOpacity>
+          // ),
+        }}
+      />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="listing/[id]" options={{ headerTitle: '' }} />
       <Stack.Screen name="settings/profile" options={{ headerTitle: '' }} />
@@ -96,18 +111,40 @@ function RootLayoutNav() {
           presentation: 'transparentModal',
           animation: 'fade',
           headerTransparent: true,
-          headerTitle: (props) => <ModalHeaderText />,
+          headerTitle: "",
+          //(props) => <ModalHeaderText />,
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              style={{
+                // backgroundColor: '#fff',
+                // borderColor: Colors.grey,
+                // borderRadius: 20,
+                // borderWidth: 1,
+                padding: 4,
+              }}>
+              <Ionicons name="close-outline" size={28} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="(modals)/schedule"
+        options={{
+          presentation: 'card',
+          headerTitle: 'Schedule',
+          //(props) => <ModalHeaderText />,
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => router.back()}
               style={{
-                backgroundColor: '#fff',
-                borderColor: Colors.grey,
-                borderRadius: 20,
-                borderWidth: 1,
+                // backgroundColor: '#fff',
+                // borderColor: Colors.grey,
+                // borderRadius: 20,
+                // borderWidth: 1,
                 padding: 4,
               }}>
-              <Ionicons name="close-outline" size={24} />
+              <Ionicons name="arrow-back" size={24} />
             </TouchableOpacity>
           ),
         }}

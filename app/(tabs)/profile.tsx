@@ -9,6 +9,7 @@ import {
   TextInput,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import { defaultStyles } from '@/constants/Styles';
 import { Ionicons } from '@expo/vector-icons';
@@ -23,6 +24,7 @@ const Page = () => {
   const [lastName, setLastName] = useState(user?.lastName);
   const [email, setEmail] = useState(user?.emailAddresses[0].emailAddress);
   const [edit, setEdit] = useState(false);
+  const router = useRouter();
 
   // Load user data on mount
   useEffect(() => {
@@ -67,8 +69,9 @@ const Page = () => {
     }
   };
 
-  const navigateTo = async () => {
-
+  const logOff = async () => {
+    signOut();
+    router.push('/(modals)/login');
   };
 
   return (
@@ -76,7 +79,7 @@ const Page = () => {
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Profile</Text>
         {isSignedIn && 
-          <TouchableOpacity onPress={() => signOut()}>
+          <TouchableOpacity onPress={() => logOff()}>
             <Ionicons name="log-out-outline" size={28} />
           </TouchableOpacity>}
       </View>

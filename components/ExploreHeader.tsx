@@ -1,5 +1,6 @@
 import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useRef, useState } from 'react';
+import { TextInput } from 'react-native-gesture-handler';
 import Colors from '@/constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -79,17 +80,22 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
           <Link href={'/(modals)/booking'} asChild>
             <TouchableOpacity>
               <View style={styles.searchBtn}>
-                <Ionicons name="search" size={24} />
-                <View>
-                  <Text style={{ fontFamily: 'mon-sb' }}>Where to?</Text>
+                {/* <View>
+                  <Text style={{ fontFamily: 'mon-sb' }}>Search anything</Text>
                   <Text style={{ color: Colors.grey, fontFamily: 'mon' }}>Anywhere · Any week</Text>
-                </View>
+                </View> */}
+                <Ionicons name="search" size={20} />
+                <TextInput
+                  style={styles.inputField}
+                  placeholder="Search activities"
+                  placeholderTextColor={'#111827'}
+                />
               </View>
             </TouchableOpacity>
           </Link>
-          <TouchableOpacity style={styles.filterBtn}>
+          {/* <TouchableOpacity style={styles.filterBtn}>
             <Ionicons name="options-outline" size={24} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
 
         <ScrollView
@@ -98,21 +104,21 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
             alignItems: 'center',
-            gap: 20,
+            gap: 12,
             paddingHorizontal: 16,
           }}>
           {categories.map((item, index) => (
             <TouchableOpacity
               ref={(el) => (itemsRef.current[index] = el)}
               key={index}
-              style={activeIndex === index ? styles.categoriesBtnActive : styles.categoriesBtn}
+              style={[styles.categoriesBtn, { backgroundColor: activeIndex === index ? '#F9FAFB': '#FFFFFF'}]}
               onPress={() => selectCategory(index)}>
-              <Ionicons
+              {/* <Ionicons
                 name={item.icon as any}
                 size={24}
                 color={activeIndex === index ? Colors.primary : Colors.grey}
-              />
-              <Text style={activeIndex === index ? styles.categoryTextActive : styles.categoryText}>
+              /> */}
+              <Text style={styles.categoryText}>
                 {item.name}
               </Text>
             </TouchableOpacity>
@@ -137,31 +143,24 @@ const styles = StyleSheet.create({
     },
   },
   actionRow: {
+    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     paddingHorizontal: 24,
-    paddingBottom: 16,
+    paddingVertical: 12,
   },
-
   searchBtn: {
-    backgroundColor: '#fff',
+    backgroundColor: '#F9FAFB',
+    display: 'flex',
     flexDirection: 'row',
-    gap: 10,
-    padding: 14,
+    height: 48,
+    gap: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
     alignItems: 'center',
-    width: 280,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: '#c2c2c2',
-    borderRadius: 30,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOpacity: 0.12,
-    shadowRadius: 8,
-    shadowOffset: {
-      width: 1,
-      height: 1,
-    },
+    width: 364,
+    borderRadius: 10,
   },
   filterBtn: {
     padding: 10,
@@ -170,28 +169,25 @@ const styles = StyleSheet.create({
     borderRadius: 24,
   },
   categoryText: {
-    fontSize: 14,
-    fontFamily: 'mon-sb',
-    color: Colors.grey,
-  },
-  categoryTextActive: {
-    fontSize: 14,
-    fontFamily: 'mon-sb',
-    color: Colors.primary,
+    fontSize: 12,
+    fontFamily: 'mon',
+    color: '#6B7280',
   },
   categoriesBtn: {
     flex: 1,
+    height: 36,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: '#F3F4F6',
   },
-  categoriesBtnActive: {
+  inputField: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderBottomColor: Colors.primary,
-    borderBottomWidth: 2,
-    paddingBottom: 8,
+    fontSize: 14,
+    fontFamily: 'mon',
   },
 });
 

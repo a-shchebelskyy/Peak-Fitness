@@ -1,3 +1,14 @@
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -31,22 +42,50 @@ const Layout = () => {
         options={{
           //headerTitle: '',
           headerShown: false,
-          tabBarIcon: ({ size, color }) => <Ionicons name="home-outline" size={size} color={color} />,
+          tabBarIcon: ({ size, color }) => <Ionicons name="home-outline" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
         name="whishlists"
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Ionicons name="search-outline" size={size} color={color} />
+            <Ionicons name="search-outline" size={24} color={color} />
           ),
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="trips"
         options={{
           tabBarIcon: ({ size, color }) => (
           <Ionicons name="flash-outline" size={size} color={color} />
+          ),
+        }}
+      /> */}
+      <Tabs.Screen
+        name="trips"
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <TouchableOpacity 
+              style={{
+                display: 'flex',
+                height: 60,
+                width: 60,
+                marginBottom: 60,
+                padding: 10,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 30,
+                borderWidth: 3,
+                borderColor: '#FFFFFF',
+                backgroundColor: Colors.primary,
+                shadowColor: '#000000',
+                shadowOffset: {width: 0, height: 4},
+                shadowOpacity: 0.1,
+                shadowRadius: 18,
+              }}
+            >
+              <Ionicons name="flash" size={30} color={'#FFFFFF'} />
+            </TouchableOpacity>
           ),
         }}
       />
@@ -54,7 +93,7 @@ const Layout = () => {
         name="inbox"
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Ionicons name="bar-chart-outline" size={size} color={color} />
+            <Ionicons name="bar-chart-outline" size={24} color={color} />
           ),
         }}
       />
@@ -63,7 +102,7 @@ const Layout = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({ size, color }) => (
-            <Ionicons name="person-outline" size={size} color={color} />
+            <Ionicons name="person-outline" size={24} color={color} />
           ),
         }}
       />
