@@ -9,13 +9,15 @@ import {
   TextInput,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { Tabs } from 'expo-router';
+import { Tabs, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 
 const Layout = () => {
+  const router = useRouter();
+
   return (
     <Tabs
       screenOptions={{
@@ -38,32 +40,25 @@ const Layout = () => {
         },
       }}>
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          //headerTitle: '',
           headerShown: false,
           tabBarIcon: ({ size, color }) => <Ionicons name="home-outline" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="whishlists"
+        name="progress"
         options={{
+          headerShown: false,
           tabBarIcon: ({ size, color }) => (
-            <Ionicons name="search-outline" size={24} color={color} />
+            <Ionicons name="trending-up-outline" size={24} color={color} />
           ),
         }}
       />
-      {/* <Tabs.Screen
-        name="trips"
-        options={{
-          tabBarIcon: ({ size, color }) => (
-          <Ionicons name="flash-outline" size={size} color={color} />
-          ),
-        }}
-      /> */}
       <Tabs.Screen
-        name="trips"
+        name="search"
         options={{
+          
           tabBarIcon: ({ size, color }) => (
             <TouchableOpacity 
               style={{
@@ -83,8 +78,9 @@ const Layout = () => {
                 shadowOpacity: 0.1,
                 shadowRadius: 18,
               }}
+              onPress={() => router.push('/(tabs)/search')}
             >
-              <Ionicons name="flash" size={30} color={'#FFFFFF'} />
+              <Ionicons name="search" size={30} color={'#FFFFFF'} />
             </TouchableOpacity>
           ),
         }}
@@ -92,8 +88,9 @@ const Layout = () => {
       <Tabs.Screen
         name="inbox"
         options={{
+          headerShown: false,
           tabBarIcon: ({ size, color }) => (
-            <Ionicons name="bar-chart-outline" size={24} color={color} />
+            <Ionicons name="chatbox-outline" size={24} color={color} />
           ),
         }}
       />

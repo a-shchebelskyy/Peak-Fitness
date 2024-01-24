@@ -76,58 +76,21 @@ const Page = () => {
 
   return (
     <SafeAreaView style={defaultStyles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.header}>Profile</Text>
-        {isSignedIn && 
-          <TouchableOpacity onPress={() => logOff()}>
-            <Ionicons name="log-out-outline" size={28} />
-          </TouchableOpacity>}
-      </View>
-
-      {/* {user && (*/}
         <View>
           <View style={styles.card}>
+          <Ionicons name="chevron-back-circle" size={40} color={Colors.primary}/>
             <Image source={{ uri: user?.imageUrl }} style={styles.avatar} />
-            <TouchableOpacity onPress={onCaptureImage}>
-              <Text style={styles.editText}>
-                Change Photo
-              </Text>
-            </TouchableOpacity>
-            {/* <View style={{ flexDirection: 'row', gap: 6 }}>
-              {!edit && (
-                <View style={styles.editRow}>
-                  <Text style={{ fontFamily: 'mon-b', fontSize: 22 }}>
-                    {firstName} {lastName}
-                  </Text>
-                  <TouchableOpacity onPress={() => setEdit(true)}>
-                    <Ionicons name="create-outline" size={24} color={Colors.dark} />
-                  </TouchableOpacity>
-                </View>
-              )}
-              {edit && (
-                <View style={styles.editRow}>
-                  <TextInput
-                    placeholder="First Name"
-                    value={firstName || ''}
-                    onChangeText={setFirstName}
-                    style={[defaultStyles.inputField, { width: 100 }]}
-                  />
-                  <TextInput
-                    placeholder="Last Name"
-                    value={lastName || ''}
-                    onChangeText={setLastName}
-                    style={[defaultStyles.inputField, { width: 100 }]}
-                  />
-                  <TouchableOpacity onPress={onSaveUser}>
-                    <Ionicons name="checkmark-outline" size={24} color={Colors.dark} />
-                  </TouchableOpacity>
-                </View>
-              )}
-            </View>
-            <Text>{email}</Text>
-            <Text>Since {user?.createdAt!.toLocaleDateString()}</Text> */}
+            <Ionicons name="chevron-forward-circle" size={40} color={Colors.primary}/>
           </View>
-          <View style={styles.frame}>
+          <View style={{ display: 'flex', alignItems: 'center'}}>
+            <Text style={styles.statText}>
+              1,239
+            </Text>
+            <Text style={styles.statLabel}>
+              Steps
+            </Text>
+          </View>
+          {/* <View style={styles.frame}>
             <View style={styles.element}>
               <View style={styles.circle}>
                 <Text style={styles.icon}>
@@ -173,72 +136,54 @@ const Page = () => {
                 </Text>
               </View>
             </View>
-          </View>
+          </View> */}
           <View style={styles.settings}>
             <TouchableOpacity style={[styles.row, {borderBottomWidth: 1}]} onPress={() => router.push('/settings/profile')}>
               <View style={styles.item}>
-                <Ionicons name="person-circle-outline" size={28} color={'#374151'}/>
+              <Text style={styles.itemText}>
+                 🏃
+                </Text>
                 <Text style={styles.itemText}>
-                  My Profile
+                  Track Steps
                 </Text>
               </View>
               <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
             </TouchableOpacity>
-            {/* <TouchableOpacity style={[styles.row, {borderBottomWidth: 1}]} onPress={() => router.push('/settings/membership')}>
-              <View style={styles.item}>
-                <Ionicons name="ribbon-outline" size={28} color={'#374151'}/>
-                <Text style={styles.itemText}>
-                  My Membership
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
-            </TouchableOpacity> */}
             <TouchableOpacity style={[styles.row, {borderBottomWidth: 1}]} onPress={() => router.push('/settings/notifications')}>
               <View style={styles.item}>
-                <Ionicons name="notifications-outline" size={28} color={'#374151'}/>
+              <Text style={styles.itemText}>
+              🩸
+                </Text>
                 <Text style={styles.itemText}>
-                  Notification Settings
+                  Track Menstrual Health
                 </Text>
               </View>
               <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
             </TouchableOpacity>
-            {/* <TouchableOpacity style={[styles.row, {borderBottomWidth: 1}]} onPress={() => router.push('/settings/language')}>
-              <View style={styles.item}>
-                <Ionicons name="language-outline" size={28} color={'#374151'}/>
-                <Text style={styles.itemText}>
-                  Language Settings
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
-            </TouchableOpacity> */}
             <TouchableOpacity style={[styles.row, {borderBottomWidth: 1}]} onPress={() => router.push('/settings/payments')}>
               <View style={styles.item}>
-                <Ionicons name="card-outline" size={28} color={'#374151'}/>
+              <Text style={styles.itemText}>
+              💧
+                </Text>
                 <Text style={styles.itemText}>
-                Payment Methods
+                Track Water Intake
                 </Text>
               </View>
               <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/faq')}>
               <View style={styles.item}>
-                <Ionicons name="help-circle-outline" size={28} color={'#374151'}/>
                 <Text style={styles.itemText}>
-                  FAQ
+                🔥
+                </Text>
+                <Text style={styles.itemText}>
+                  Track Calories Burned
                 </Text>
               </View>
               <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
             </TouchableOpacity>
           </View>
         </View>
-      {/* )} */}
-
-      {/* {isSignedIn && <Button title="Log Out" onPress={() => signOut()} color={Colors.dark} />} */}
-      {isSignedIn && (
-        <Link href={'/(modals)/login'} asChild>
-          <Button title="Log In" color={Colors.dark} />
-        </Link>
-      )}
     </SafeAreaView>
   );
 };
@@ -254,20 +199,32 @@ const styles = StyleSheet.create({
     fontSize: 28,
   },
   card: {
-    backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 16,
-    marginHorizontal: 24,
-    marginTop: 16,
+    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    justifyContent: 'space-around',
+    backgroundColor: '#fff',
+    margin: 24,
   },
   avatar: {
-    width: 88,
-    height: 88,
-    borderRadius: 50,
+    width: 200,
+    height: 200,
+    borderRadius: 100,
     backgroundColor: Colors.grey,
   },
+  statText: {
+    color: '#111827',
+    fontFamily: 'mon-sb',
+    fontSize: 40,
+  },
+  statLabel: {
+    color: '#9CA3AF',
+    fontFamily: 'mon-sb',
+    fontSize: 19,
+  },
+
+
+
   editText: {
     color: Colors.primary,
     fontFamily: 'mon-sb',
@@ -314,11 +271,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 4,
   },
-  statText: {
-    color: '#111827',
-    fontFamily: 'mon-sb',
-    fontSize: 16,
-  },
+  // statText: {
+  //   color: '#111827',
+  //   fontFamily: 'mon-sb',
+  //   fontSize: 16,
+  // },
   elementLabel: {
     color: '#9CA3AF',
     fontFamily: 'mon-sb',
@@ -328,7 +285,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    marginHorizontal: 24,
+    margin: 24,
     paddingHorizontal: 14,
     borderWidth: 1,
     borderRadius: 12,

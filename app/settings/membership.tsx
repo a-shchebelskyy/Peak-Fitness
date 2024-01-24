@@ -17,40 +17,28 @@ enum Strategy {
 
 const options = [
   {
-    name: 'Fitness',
+    name: 'Basic',
+    color: '#FEDA00',
+    description: 'Access to a vast library of personalized workout plans catering to various fitness levels and goals.',
+    price: 0.00,
+    feature1: 'Free 30 Day Trial',
+    feature2: 'Priority Support',
   },
   {
-    name: 'Motivation',
+    name: 'Premium',
+    color: '#0024FE',
+    description: 'Access to a vast library of personalized workout plans catering to various fitness levels and goals.',
+    price: 119.99,
+    feature1: 'Free 30 Day Trial',
+    feature2: 'Priority Support',
   },
   {
-    name: 'Discipline',
-  },
-  {
-    name: 'Community',
-  },
-  {
-    name: 'Wellness',
-  },
-  {
-    name: 'Accountability',
-  },
-  {
-    name: 'Stress Management',
-  },
-  {
-    name: 'Goal',
-  },
-  {
-    name: 'Health',
-  },
-  {
-    name: 'Results',
-  },
-  {
-    name: 'Progress',
-  },
-  {
-    name: 'Tracking',
+    name: 'Pro',
+    color: '#111827',
+    description: 'Access to a vast library of personalized workout plans catering to various fitness levels and goals.',
+    price: 199.99,
+    feature1: 'Free 30 Day Trial',
+    feature2: 'Priority Support',
   },
 ];
 
@@ -71,7 +59,7 @@ const Page = () => {
     const currentSection = sectionRef.current[index];
     setActiveSection(index + 1);
     if (activeSection > 2) {
-      router.push('/(tabs)/home');
+      router.push('/(tabs)/');
     }
     else {
       currentSection?.measure((x) => {
@@ -105,79 +93,77 @@ const Page = () => {
   };
 
   return (
-    <View>
+    <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+      <View style={styles.headerContainer}>
+      <Text style={styles.header}>
+        Peak Subscription
+      </Text>
+      <Text style={styles.subheader}>
+        Access to customized training plans, chat with personal fitness trainers, and discounted sessions.
+      </Text>
+      </View>
       <ScrollView
         horizontal
         ref={scrollRef}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.container}
+        snapToInterval={SCREEN_WIDTH * 0.76 + 24}
       >
-        <View style={{ width: SCREEN_WIDTH }}>
-          <Text style={styles.header}>
-            What’s your primary reason for joining Peak?
-          </Text>
-          <View style={styles.options}>
-            {options.map((item, index) => (
-                <TouchableOpacity
-                  ref={(el) => (itemsRef.current[index] = el)}
-                  key={index}
-                  style={[styles.optionButton, { 
-                    backgroundColor: activeIndex === index ? Colors.primary : '#FFFFFF',
-                    borderColor: activeIndex === index ? '#FFFFFF' : '#9CA3AF',
-                  }]}
-                  onPress={() => selectOption(index)}>
-                  <Text style={[styles.optionText, {color: activeIndex === index ? '#FFFFFF' : '#111827'}]}>
-                    {item.name}
-                  </Text>
-                </TouchableOpacity>
-            ))}
+        {options.map((item, index) => (
+                  // <TouchableOpacity
+                  //   ref={(el) => (itemsRef.current[index] = el)}
+                  //   key={index}
+                  //   style={[styles.optionButton, { 
+                  //     backgroundColor: activeIndex === index ? Colors.primary : '#FFFFFF',
+                  //     borderColor: activeIndex === index ? '#FFFFFF' : '#9CA3AF',
+                  //   }]}
+                  //   onPress={() => selectOption(index)}>
+                  //   <Text style={[styles.optionText, {color: activeIndex === index ? '#FFFFFF' : '#111827'}]}>
+                  //     {item.name}
+                  //   </Text>
+                  // </TouchableOpacity>
+        <View 
+          key={index}
+          style={[styles.card, { backgroundColor: item.color, borderColor: item.color }]}
+        >
+          <View style={styles.inner}>
+            <Text style={styles.title}>
+              {item.name}
+            </Text>
+            <Text style={styles.description}>
+              {item.description}
+            </Text>
+            <View style={styles.price}>
+              <Text style={styles.dollar}>
+                $
+              </Text>
+              <Text style={styles.amount}>
+                {item.price}
+              </Text>
+            </View>
+            <View style={styles.featuresContainer}>
+              <View style={[styles.feature, {borderBottomWidth: 1}]}>
+                <Ionicons name="checkmark-circle-outline" size={16} />
+                <Text style={styles.featureText}>
+                  {item.feature1}
+                </Text>
+              </View>
+              <View style={styles.feature}>
+                <Ionicons name="checkmark-circle-outline" size={16} />
+                <Text style={styles.featureText}>
+                  {item.feature2}
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View>
+
           </View>
         </View>
-        <View style={{ width: SCREEN_WIDTH }}>
-          <Text style={styles.header}>
-            Tell us about yourself
-          </Text>
-          <Text style={styles.subheader}>
-            We’d like the following information to provide more accurate results
-          </Text>
-          <View style={styles.inputGroup}>
-            <TextInput
-                style={styles.input}
-                placeholder="Height"
-                placeholderTextColor={'#111827'}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Weight"
-                placeholderTextColor={'#111827'}
-            />
-          </View>
-        </View>
-        <View style={{ width: SCREEN_WIDTH }}>
-          <Text style={styles.header}>
-            Give your coach some final details
-          </Text>
-          <Text style={styles.subheader}>
-            This information helps your coach design a training journey.
-          </Text>
-          <View style={styles.inputGroup}>
-            <TextInput
-                style={styles.input}
-                placeholder="Gender"
-                placeholderTextColor={'#111827'}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Date of Birth"
-                placeholderTextColor={'#111827'}
-            />
-          </View>
-        </View>
+         ))}
       </ScrollView>
-      <TouchableOpacity style={[defaultStyles.btn, { position: 'absolute', bottom: 32, alignSelf: 'stretch' }]}
-        onPress={() => nextSection(activeSection)}
-      >
-        <Text style={defaultStyles.btnText}>Next</Text>
+      <TouchableOpacity style={[defaultStyles.btn, { bottom: 50, alignSelf: 'stretch', marginHorizontal: 24, }]}>
+        <Text style={defaultStyles.btnText}>Activate Now</Text>
       </TouchableOpacity>
       {/* <TextInput
         autoCapitalize="none"
@@ -236,10 +222,31 @@ export default Page;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
+    display: 'flex',
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    padding: 24,
+    alignItems: 'flex-start',
+    marginTop: 26,
+    paddingHorizontal: SCREEN_WIDTH * 0.12,
+    gap: 24,
+  },
+  card: {
+    width: SCREEN_WIDTH * 0.76,
+    height: SCREEN_WIDTH * 0.96,
+    //padding: 2,
+    borderRadius: 12,
+    borderWidth: 2,
+    //backgroundColor: '#0024FE',
+    //borderColor: '#0024FE'
+  },
+  inner: {
+    display: 'flex',
+    height: SCREEN_WIDTH * 0.96 - 46,
+    paddingVertical: 20,
+    paddingHorizontal: 24,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    backgroundColor: '#FFFFFF',
   },
   options: {
     display: 'flex',
@@ -310,23 +317,70 @@ const styles = StyleSheet.create({
     fontFamily: 'mon-sb',
   },
   headerContainer: {
-    marginTop: 20,
-    marginBottom: 30,
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+    paddingHorizontal: 40,
+    marginTop: 24,
     gap: 8,
   },
   header: {
     color: '#111827',
     fontFamily: 'mon-sb',
-    fontSize: 24,
     textAlign: 'center',
+    fontSize: 24,
   },
   subheader: {
     color: '#6B7280',
     fontFamily: 'mon',
-    fontSize: 16,
+    textAlign: 'center',
+    fontSize: 14,
     marginTop: 8,
+  },
+  title: {
+    color: '#111827',
+    fontFamily: 'mon-sb',
+    fontSize: 40,
+  },
+  description: {
+    color: '#4B5563',
+    fontFamily: 'mon',
+    fontSize: 12,
+  },
+  price: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginVertical: 20,
+  },
+  dollar: {
+    color: '#9CA3AF',
+    fontFamily: 'mon',
+    fontSize: 24,
+    marginTop: 6,
+  },
+  amount: {
+    color: '#111827',
+    fontFamily: 'mon-sb',
+    fontSize: 48,
+  },
+  featuresContainer: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: 6,
+  },
+  feature: {
+    display: 'flex',
+    flexDirection: 'row',
+    paddingHorizontal: 2,
+    paddingVertical: 8,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    gap: 8,
+    borderColor: '#E5E7EB',
+  },
+  featureText: {
+    display: 'flex',
+    justifyContent: 'center',
+    color: '#111827',
+    fontFamily: 'mon',
+    fontSize: 14,
   },
 });

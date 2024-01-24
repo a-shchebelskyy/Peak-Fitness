@@ -56,8 +56,8 @@ const Page = () => {
         placeholder="Email"
         style={[defaultStyles.inputField, { marginBottom: 24 }]}
       />
-
-      <TouchableOpacity style={defaultStyles.btn} onPress={() => router.push('/(modals)/onboarding')}>
+{/* onPress={() => router.push('/(modals)/onboarding')} */}
+      <TouchableOpacity style={defaultStyles.btn}>
         <Text style={defaultStyles.btnText}>Sign In</Text>
       </TouchableOpacity>
 

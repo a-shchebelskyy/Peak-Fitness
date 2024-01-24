@@ -82,7 +82,7 @@ function RootLayoutNav() {
           },
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="close-outline" size={28} />
+              <Ionicons name="close-outline" size={24} />
             </TouchableOpacity>
           ),
         }}
@@ -91,20 +91,175 @@ function RootLayoutNav() {
         name="(modals)/onboarding"
         options={{
           presentation: 'card',
-          title: 'Lets get yo know you',
+          title: 'Lets get to know you',
+          headerShadowVisible: false,
           headerTitleStyle: {
             fontFamily: 'mon-sb',
           },
-          // headerLeft: () => (
-          //   <TouchableOpacity onPress={() => router.back()}>
-          //     <Ionicons name="close-outline" size={28} />
-          //   </TouchableOpacity>
-          // ),
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              >
+              <Ionicons name="arrow-back" size={24} />
+            </TouchableOpacity>
+          ),
         }}
       />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="listing/[id]" options={{ headerTitle: '' }} />
-      <Stack.Screen name="settings/profile" options={{ headerTitle: '' }} />
+      <Stack.Screen
+        name="settings/profile"
+        options={{
+          presentation: 'card',
+          title: 'My Profile',
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            fontFamily: 'mon-sb',
+          },
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              >
+              <Ionicons name="arrow-back" size={24} />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              style={{
+              }}>
+              <Ionicons name="create-outline" size={24} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="settings/membership"
+        options={{
+          presentation: 'card',
+          title: 'My Membership',
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            fontFamily: 'mon-sb',
+          },
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              >
+              <Ionicons name="arrow-back" size={24} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="settings/notifications"
+        options={{
+          presentation: 'card',
+          title: 'Notification Settings',
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            fontFamily: 'mon-sb',
+          },
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              >
+              <Ionicons name="arrow-back" size={24} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="settings/language"
+        options={{
+          presentation: 'card',
+          title: 'Language Settings',
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            fontFamily: 'mon-sb',
+          },
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              >
+              <Ionicons name="arrow-back" size={24} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="settings/payments"
+        options={{
+          presentation: 'card',
+          title: 'Payment Methods',
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            fontFamily: 'mon-sb',
+          },
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              >
+              <Ionicons name="arrow-back" size={24} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="settings/newcard"
+        options={{
+          presentation: 'card',
+          title: 'Add New Card',
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            fontFamily: 'mon-sb',
+          },
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              >
+              <Ionicons name="arrow-back" size={24} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="settings/editcard"
+        options={{
+          presentation: 'card',
+          title: 'Edit Card',
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            fontFamily: 'mon-sb',
+          },
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              >
+              <Ionicons name="arrow-back" size={24} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="settings/faq"
+        options={{
+          presentation: 'card',
+          title: 'FAQ',
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            fontFamily: 'mon-sb',
+          },
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              >
+              <Ionicons name="arrow-back" size={24} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+
       <Stack.Screen
         name="(modals)/booking"
         options={{
@@ -116,14 +271,8 @@ function RootLayoutNav() {
           headerRight: () => (
             <TouchableOpacity
               onPress={() => router.back()}
-              style={{
-                // backgroundColor: '#fff',
-                // borderColor: Colors.grey,
-                // borderRadius: 20,
-                // borderWidth: 1,
-                padding: 4,
-              }}>
-              <Ionicons name="close-outline" size={28} />
+              >
+              <Ionicons name="close-outline" size={24} />
             </TouchableOpacity>
           ),
         }}

@@ -9,19 +9,22 @@ import {
   TextInput,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import { defaultStyles } from '@/constants/Styles';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 import * as ImagePicker from 'expo-image-picker';
+import { SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 
 const Page = () => {
   const { signOut, isSignedIn } = useAuth();
   const { user } = useUser();
+  const router = useRouter();
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
   const [email, setEmail] = useState(user?.emailAddresses[0].emailAddress);
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(true);
 
   // Load user data on mount
   useEffect(() => {
@@ -45,6 +48,7 @@ const Page = () => {
       console.log(error);
     } finally {
       setEdit(false);
+      router.back();
     }
   };
 
@@ -68,13 +72,13 @@ const Page = () => {
 
   return (
     <SafeAreaView style={defaultStyles.container}>
-      <View style={styles.headerContainer}>
+      {/* <View style={styles.headerContainer}>
         <Text style={styles.header}>Profile</Text>
         {isSignedIn && 
           <TouchableOpacity onPress={() => signOut()}>
             <Ionicons name="log-out-outline" size={28} />
           </TouchableOpacity>}
-      </View>
+      </View> */}
 
       {user && (
           <View style={styles.card}>
@@ -84,8 +88,7 @@ const Page = () => {
                 Change Photo
               </Text>
             </TouchableOpacity>
-            {/* <View style={{ flexDirection: 'row', gap: 6 }}>
-              {!edit && (
+              {/* {!edit && (
                 <View style={styles.editRow}>
                   <Text style={{ fontFamily: 'mon-b', fontSize: 22 }}>
                     {firstName} {lastName}
@@ -94,28 +97,85 @@ const Page = () => {
                     <Ionicons name="create-outline" size={24} color={Colors.dark} />
                   </TouchableOpacity>
                 </View>
-              )}
+              )} */}
               {edit && (
-                <View style={styles.editRow}>
-                  <TextInput
-                    placeholder="First Name"
-                    value={firstName || ''}
-                    onChangeText={setFirstName}
-                    style={[defaultStyles.inputField, { width: 100 }]}
-                  />
-                  <TextInput
-                    placeholder="Last Name"
-                    value={lastName || ''}
-                    onChangeText={setLastName}
-                    style={[defaultStyles.inputField, { width: 100 }]}
-                  />
-                  <TouchableOpacity onPress={onSaveUser}>
-                    <Ionicons name="checkmark-outline" size={24} color={Colors.dark} />
-                  </TouchableOpacity>
+                <View style={styles.settings}>
+                  <View style={styles.editRow}>
+                    <Text style={styles.label}>
+                      First Name
+                    </Text>
+                    <TextInput
+                      value={firstName || ''}
+                      onChangeText={setFirstName}
+                      style={{ fontFamily: 'mon-sb' }}
+                    />
+                  </View>
+                  <View style={styles.editRow}>
+                    <Text style={styles.label}>
+                      Last Name
+                    </Text>
+                    <TextInput
+                      value={lastName || ''}
+                      onChangeText={setLastName}
+                      style={{ fontFamily: 'mon-sb' }}
+                    />
+                  </View>
+                  <View style={styles.editRow}>
+                    <Text style={styles.label}>
+                      Phone Number
+                    </Text>
+                    <TextInput
+                      value={'+16477842795'}
+                      onChangeText={setFirstName}
+                      style={{ fontFamily: 'mon-sb' }}
+                    />
+                  </View>
+                  <View style={styles.editRow}>
+                    <Text style={styles.label}>
+                      Date of Birth
+                    </Text>
+                    <TextInput
+                      value={'March 29, 1996'}
+                      onChangeText={setFirstName}
+                      style={{ fontFamily: 'mon-sb' }}
+                    />
+                  </View>
+                  <View style={styles.editRow}>
+                    <Text style={styles.label}>
+                      Height
+                    </Text>
+                    <TextInput
+                      value={'183.0 cm'}
+                      onChangeText={setFirstName}
+                      style={{ fontFamily: 'mon-sb' }}
+                    />
+                  </View>
+                  <View style={styles.editRow}>
+                    <Text style={styles.label}>
+                      Weight
+                    </Text>
+                    <TextInput
+                      value={'73.0 kg'}
+                      onChangeText={setFirstName}
+                      style={{ fontFamily: 'mon-sb' }}
+                    />
+                  </View>
+                  <View style={styles.editRow}>
+                    <Text style={styles.label}>
+                      Gender
+                    </Text>
+                    <TextInput
+                      value={'Male'}
+                      onChangeText={setFirstName}
+                      style={{ fontFamily: 'mon-sb' }}
+                    />
+                  </View>
+                  {/* <TouchableOpacity onPress={onSaveUser}>
+                    <Ionicons name="checkmark-outline" size={24} />
+                  </TouchableOpacity> */}
                 </View>
               )}
-            </View>
-            <Text>{email}</Text>
+            {/* <Text>{email}</Text>
             <Text>Since {user?.createdAt!.toLocaleDateString()}</Text> */}
         </View>
       )}
@@ -135,10 +195,10 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#fff',
-    padding: 20,
+    //padding: 20,
     borderRadius: 16,
     marginHorizontal: 24,
-    marginTop: 16,
+    marginTop: 48,
     alignItems: 'center',
     gap: 12,
   },
@@ -154,19 +214,22 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   editRow: {
-    flex: 1,
+    //flex: 1,
+    //flexDirection: 'row',
+    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
+    height: 56,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderColor: '#E5E7EB',
   },
-  frame: {
-    justifyContent: 'center',
-    //alignItems: 'flex-start',
-    flexDirection: 'row',
-    marginBottom: 20,
-    paddingHorizontal: 36,
-    gap: 20,
+  label: {
+    color: '#6B7280',
+    fontFamily: 'mon',
+    fontSize: 14,
   },
   element: {
     display: 'flex',
@@ -184,9 +247,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
     backgroundColor: '#F9FAFB',
-  },
-  icon: {
-    fontSize: 24,
   },
   labels: {
     display: 'flex',
@@ -206,14 +266,11 @@ const styles = StyleSheet.create({
   },
   settings: {
     display: 'flex',
-    flexDirection: 'column',
+    //flexDirection: 'column',
     alignItems: 'flex-start',
-    marginHorizontal: 24,
-    paddingHorizontal: 14,
-    borderWidth: 1,
-    borderRadius: 12,
-    borderColor: '#F3F4F6',
-    backgroundColor: '#F9FAFB',
+    marginTop: 20,
+    paddingHorizontal: 24,
+    width: SCREEN_WIDTH,
   },
   row: {
     display: 'flex',
