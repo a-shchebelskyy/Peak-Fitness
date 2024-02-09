@@ -16,42 +16,23 @@ enum Strategy {
 }
 
 const options = [
-  {
-    name: 'Fitness',
-  },
-  {
-    name: 'Motivation',
-  },
-  {
-    name: 'Discipline',
-  },
-  {
-    name: 'Community',
-  },
-  {
-    name: 'Wellness',
-  },
-  {
-    name: 'Accountability',
-  },
-  {
-    name: 'Stress Management',
-  },
-  {
-    name: 'Goal',
-  },
-  {
-    name: 'Health',
-  },
-  {
-    name: 'Results',
-  },
-  {
-    name: 'Progress',
-  },
-  {
-    name: 'Tracking',
-  },
+  '🔥 Burn fat',
+  '💪 Build muscle',
+  '🏋️‍♀️ Strength',
+  '🤸 Flexibility',
+  '👫 Community',
+  '🌿 Overall health',
+  '🏃‍♂️ Endurance',
+  '⚡ Energy levels',
+  '💢 Stress',
+  '❤️ Cardiovascular health',
+  '🏅 Athletic performance',
+  '🧘 Mood',
+  '🌙 Sleep quality',
+  //'Improve balance',
+  //'Tone muscles',
+  //'Enhance athletic performance',
+  '😎 Confidence',
 ];
 
 const Page = () => {
@@ -65,25 +46,43 @@ const Page = () => {
   const sectionRef = useRef<Array<View | null>>([]);
   const itemsRef = useRef<Array<TouchableOpacity | null>>([]);
   const [activeSection, setActiveSection] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0);
+  //var activeSection = 0;
+  const [goals, setGoals] = useState(0);
+  //const goals = useState([0]);
 
   const nextSection = (index: number) => {
-    const currentSection = sectionRef.current[index];
-    setActiveSection(index + 1);
+    //setActiveSection(index + 1);
+    console.log('Scroll')
+    //activeSection = activeSection + index;
+    //scrollRef.current?.scrollToEnd({animated: true});
+    //scrollRef.current?.scrollTo({ x: SCREEN_WIDTH * index, animated: true });
     if (activeSection > 2) {
       router.push('/(tabs)/home');
     }
     else {
-      currentSection?.measure((x) => {
-        scrollRef.current?.scrollTo({ x: -1 * SCREEN_WIDTH, y: 0, animated: true });
-      });
+      setActiveSection(index + 1);
+      scrollRef.current?.scrollToEnd({animated: true});
+      scrollRef.current?.scrollTo({ x: SCREEN_WIDTH * index, animated: true });
+      // currentSection?.measure((x) => {
+      //   scrollRef.current?.scrollTo({ x: SCREEN_WIDTH, y: 0, animated: true });
+      // });
     }
   };
 
-  const selectOption = (index: number) => {
-    const selected = itemsRef.current[index];
-    setActiveIndex(index);
-    //onCategoryChanged(categories[index].name);
+  const selectGoal = (index: number) => {
+    //goals.push(index)
+    //const selected = itemsRef.current[index];
+    setGoals(index);
+    // if(goals.length > 2) {
+
+    // }
+    // if(goals.includes(index)) {
+    //   goals.splice(index);
+    // }
+    // else {
+    //   goals.push(index);
+    // }
+    //onSelect(goals);
   };
 
   const onSelectAuth = async (strategy: Strategy) => {
@@ -105,29 +104,37 @@ const Page = () => {
   };
 
   return (
-    <View>
+    <View style={defaultStyles.container}>
       <ScrollView
         horizontal
         ref={scrollRef}
+        pagingEnabled={true}
+        scrollEventThrottle={16}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.container}
+        scrollEnabled={true}
+        //snapToStart={true}
       >
-        <View style={{ width: SCREEN_WIDTH }}>
+        <View style={{ width: SCREEN_WIDTH, padding: 24, }}
+        >
           <Text style={styles.header}>
-            What’s your primary reason for joining Peak?
+            Why are you joining Peak?
+          </Text>
+          <Text style={styles.subheader}>
+            Pick up to three goals
           </Text>
           <View style={styles.options}>
             {options.map((item, index) => (
                 <TouchableOpacity
-                  ref={(el) => (itemsRef.current[index] = el)}
+                  //ref={(el) => (itemsRef.current[index] = el)}
                   key={index}
                   style={[styles.optionButton, { 
-                    backgroundColor: activeIndex === index ? Colors.primary : '#FFFFFF',
-                    borderColor: activeIndex === index ? '#FFFFFF' : '#9CA3AF',
+                    backgroundColor: goals === index ? Colors.primary : '#FFFFFF',
+                    borderColor: goals === index ? '#FFFFFF' : '#9CA3AF',
                   }]}
-                  onPress={() => selectOption(index)}>
-                  <Text style={[styles.optionText, {color: activeIndex === index ? '#FFFFFF' : '#111827'}]}>
-                    {item.name}
+                  onPress={() => selectGoal(index)}>
+                  <Text style={[styles.optionText, {color: goals === index ? '#FFFFFF' : '#111827'}]}>
+                    {options[index]}
                   </Text>
                 </TouchableOpacity>
             ))}
@@ -174,60 +181,14 @@ const Page = () => {
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity style={[defaultStyles.btn, { position: 'absolute', bottom: 32, alignSelf: 'stretch' }]}
-        onPress={() => nextSection(activeSection)}
-      >
-        <Text style={defaultStyles.btnText}>Next</Text>
-      </TouchableOpacity>
-      {/* <TextInput
-        autoCapitalize="none"
-        placeholder="Email"
-        style={[defaultStyles.inputField, { marginBottom: 24 }]}
-      />
-
-      <TouchableOpacity style={defaultStyles.btn}>
-        <Text style={defaultStyles.btnText}>Sign In</Text>
-      </TouchableOpacity>
-
-      <View style={styles.seperatorView}>
-        <View
-          style={{
-            flex: 1,
-            borderBottomColor: Colors.grey,
-            borderBottomWidth: StyleSheet.hairlineWidth,
-          }}
-        />
-        <Text style={styles.seperator}>or sign in with</Text>
-        <View
-          style={{
-            flex: 1,
-            borderBottomColor: Colors.grey,
-            borderBottomWidth: StyleSheet.hairlineWidth,
-          }}
-        />
-      </View> */}
-
-      {/* <View style={{ gap: 20 }}> */}
-        {/* <TouchableOpacity style={styles.btnOutline}>
-          <Ionicons name="mail-outline" size={24} style={defaultStyles.btnIcon} />
-          <Text style={styles.btnOutlineText}>Continue with Phone</Text>
-        </TouchableOpacity> */}
-
-        {/* <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Google)}>
-          <Ionicons name="md-logo-google" size={24} style={defaultStyles.btnIcon} />
-          <Text style={styles.btnOutlineText}>Sign in with Google</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Apple)}>
-          <Ionicons name="md-logo-apple" size={24} style={defaultStyles.btnIcon} />
-          <Text style={styles.btnOutlineText}>Sign in with Apple</Text>
-        </TouchableOpacity> */}
-
-        {/* <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Facebook)}>
-          <Ionicons name="md-logo-facebook" size={24} style={defaultStyles.btnIcon} />
-          <Text style={styles.btnOutlineText}>Continue with Facebook</Text>
-        </TouchableOpacity> */}
-      {/* </View> */}
+      <View style={styles.footer}>
+          <TouchableOpacity 
+            style={[defaultStyles.btn, { flex: 1, paddingHorizontal: 16, paddingVertical: 8,}]}
+            onPress={() => nextSection(activeSection)}
+          >
+            <Text style={defaultStyles.btnText}>Continue</Text>
+          </TouchableOpacity>
+        </View>
     </View>
   );
 };
@@ -239,7 +200,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#fff',
-    padding: 24,
+    width: SCREEN_WIDTH,
   },
   options: {
     display: 'flex',
@@ -248,7 +209,7 @@ const styles = StyleSheet.create({
     alignContent: 'flex-start',
     flexWrap: 'wrap',
     marginTop: 47,
-    gap: 8,
+    gap: 16,
   },
   optionButton: {
     display: 'flex',
@@ -327,6 +288,18 @@ const styles = StyleSheet.create({
     color: '#6B7280',
     fontFamily: 'mon',
     fontSize: 16,
+    textAlign: 'center',
     marginTop: 8,
+  },
+  footer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    marginBottom: 34,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    gap: 12,
   },
 });

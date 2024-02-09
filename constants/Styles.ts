@@ -7,11 +7,13 @@ export const defaultStyles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   inputField: {
-    height: 56,
+    minHeight: 56,
     borderRadius: 12,
     paddingVertical: 8,
-    paddingHorizontal: 12,
+    paddingHorizontal: 16,
     backgroundColor: '#F9FAFB',
+    fontFamily: 'mon',
+    fontSize: 16,
   },
   btn: {
     backgroundColor: Colors.primary,
@@ -28,6 +30,11 @@ export const defaultStyles = StyleSheet.create({
   btnIcon: {
     //position: 'absolute',
     //left: 16,
+  },
+  link: {
+    color: Colors.primary,
+    fontFamily: 'mon-sb',
+    fontSize: 16,
   },
   footer: {
     position: 'absolute',

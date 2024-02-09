@@ -71,21 +71,21 @@ const Page = () => {
 
   const logOff = async () => {
     signOut();
-    router.push('/(modals)/login');
+    router.push('/(modals)/intro');
   };
 
   return (
     <SafeAreaView style={defaultStyles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Profile</Text>
-        {isSignedIn && 
+        {/* {isSignedIn &&  */}
           <TouchableOpacity onPress={() => logOff()}>
             <Ionicons name="log-out-outline" size={28} />
-          </TouchableOpacity>}
+          </TouchableOpacity>
+          {/* } */}
       </View>
 
       {/* {user && (*/}
-        <View>
           <View style={styles.card}>
             <Image source={{ uri: user?.imageUrl }} style={styles.avatar} />
             <TouchableOpacity onPress={onCaptureImage}>
@@ -230,12 +230,11 @@ const Page = () => {
               <Ionicons name="chevron-forward-outline" size={16} color={'#9CA3AF'} />
             </TouchableOpacity>
           </View>
-        </View>
       {/* )} */}
 
       {/* {isSignedIn && <Button title="Log Out" onPress={() => signOut()} color={Colors.dark} />} */}
       {isSignedIn && (
-        <Link href={'/(modals)/login'} asChild>
+        <Link href={'/(modals)/intro'} asChild>
           <Button title="Log In" color={Colors.dark} />
         </Link>
       )}
@@ -255,10 +254,7 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 16,
-    marginHorizontal: 24,
-    marginTop: 16,
+    padding: 48,
     alignItems: 'center',
     gap: 12,
   },

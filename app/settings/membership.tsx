@@ -59,7 +59,6 @@ const Page = () => {
     const currentSection = sectionRef.current[index];
     setActiveSection(index + 1);
     if (activeSection > 2) {
-      router.push('/(tabs)/');
     }
     else {
       currentSection?.measure((x) => {

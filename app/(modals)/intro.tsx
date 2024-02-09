@@ -1,8 +1,8 @@
 import Colors from '@/constants/Colors';
 import { useOAuth } from '@clerk/clerk-expo';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import { View, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
+import { Link, useRouter } from 'expo-router';
+import { Image, View, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
 
 // https://github.com/clerkinc/clerk-expo-starter/blob/main/components/OAuth.tsx
 import { useWarmUpBrowser } from '@/hooks/useWarmUpBrowser';
@@ -40,28 +40,21 @@ const Page = () => {
 
   return (
     <View style={styles.container}>
-      <View
-        style={styles.headerContainer}
-      >
+      <Image
+        source={require('../../assets/images/hero.png')}
+        style={{ position: 'absolute', top: 80, display: 'flex', alignSelf: 'center', width: 432, height: 432 }}
+      />
+      <View style={styles.headerContainer}>
         <Text style={styles.header}>
-          Sign In
+          Welcome to Peak
         </Text>
         <Text style={styles.subheader}>
-          Let's sign in to your Peak profile
+          One app for all things fitness
         </Text>
       </View>
-      
-      <TextInput
-        autoCapitalize="none"
-        placeholder="Email"
-        style={[defaultStyles.inputField, { marginBottom: 24 }]}
-      />
 {/* onPress={() => router.push('/(modals)/onboarding')} */}
-      <TouchableOpacity style={defaultStyles.btn}>
-        <Text style={defaultStyles.btnText}>Sign In</Text>
-      </TouchableOpacity>
 
-      <View style={styles.seperatorView}>
+      {/* <View style={styles.seperatorView}>
         <View
           style={{
             flex: 1,
@@ -77,28 +70,42 @@ const Page = () => {
             borderBottomWidth: StyleSheet.hairlineWidth,
           }}
         />
-      </View>
+      </View> */}
 
-      <View style={{ gap: 20 }}>
+      <View style={{ gap: 12 }}>
+        <TouchableOpacity style={defaultStyles.btn} onPress={() => router.push('/(modals)/signup')}>
+          <Text style={defaultStyles.btnText}>Sign Up</Text>
+        </TouchableOpacity>
+
         {/* <TouchableOpacity style={styles.btnOutline}>
           <Ionicons name="mail-outline" size={24} style={defaultStyles.btnIcon} />
           <Text style={styles.btnOutlineText}>Continue with Phone</Text>
         </TouchableOpacity> */}
 
         <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Google)}>
-          <Ionicons name="md-logo-google" size={24} style={defaultStyles.btnIcon} />
+          <Ionicons name="md-logo-google" size={24} />
           <Text style={styles.btnOutlineText}>Sign in with Google</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Apple)}>
-          <Ionicons name="md-logo-apple" size={24} style={defaultStyles.btnIcon} />
-          <Text style={styles.btnOutlineText}>Sign in with Apple</Text>
+        <TouchableOpacity style={styles.btnDark} onPress={() => onSelectAuth(Strategy.Apple)}>
+          <Ionicons name="md-logo-apple" size={24} color={'#FFF'}/>
+          <Text style={styles.btnDarkText}>Sign in with Apple</Text>
         </TouchableOpacity>
 
         {/* <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Facebook)}>
           <Ionicons name="md-logo-facebook" size={24} style={defaultStyles.btnIcon} />
           <Text style={styles.btnOutlineText}>Continue with Facebook</Text>
         </TouchableOpacity> */}
+      </View>
+      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 24, gap: 8,}}>
+        <Text style={styles.signin}>
+          Already have an account?
+        </Text>
+        <Link href={'/(modals)/signin'} asChild>
+          <Text style={defaultStyles.link}>
+            Sign In
+          </Text>
+        </Link>
       </View>
     </View>
   );
@@ -112,7 +119,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 24,
   },
-
   seperatorView: {
     flexDirection: 'row',
     gap: 10,
@@ -128,12 +134,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: Colors.grey,
-    height: 56,
+    minHeight: 56,
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingHorizontal: 16,
+    padding: 16,
+    gap: 12,
+  },
+  btnDark: {
+    backgroundColor: '#1F2937',
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
+    minHeight: 56,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    padding: 16,
     gap: 12,
   },
   btnOutlineText: {
@@ -141,13 +159,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'mon-sb',
   },
+  btnDarkText: {
+    color: '#fff',
+    fontSize: 16,
+    fontFamily: 'mon-sb',
+  },
   headerContainer: {
-    marginTop: 20,
-    marginBottom: 30,
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     gap: 8,
+    marginTop: 480,
+    marginBottom: 36,
   },
   header: {
     color: '#111827',
@@ -156,6 +178,11 @@ const styles = StyleSheet.create({
   },
   subheader: {
     color: '#6B7280',
+    fontFamily: 'mon',
+    fontSize: 16,
+  },
+  signin: {
+    color: '#111827',
     fontFamily: 'mon',
     fontSize: 16,
   },

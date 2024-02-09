@@ -67,10 +67,10 @@ const Page = () => {
           <View style={styles.input}>
             <TextInput
               style={{ fontFamily: 'mon', fontSize: 16 }}
-              placeholder="0000 0000 0000"
+              placeholder="0000 0000 0000 0000"
               placeholderTextColor={'#9CA3AF'}
               inputMode='numeric'
-              maxLength={16}
+              maxLength={19}
               onChangeText={setNumber}
             />
             <Ionicons name="card-outline" size={24} color={'#9CA3AF'}/>

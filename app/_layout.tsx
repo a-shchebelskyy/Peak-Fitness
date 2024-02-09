@@ -66,23 +66,47 @@ function RootLayoutNav() {
   // Automatically open login if user is not authenticated
   useEffect(() => {
     if (isLoaded && !isSignedIn) {
-      router.push('/(modals)/login');
+      router.push('/(modals)/intro');
     }
   }, [isLoaded]);
 
   return (
     <Stack>
       <Stack.Screen
-        name="(modals)/login"
+        name="(modals)/intro"
         options={{
           presentation: 'card',
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="(modals)/signin"
+        options={{
+          presentation: 'containedModal',
           title: '',
+          headerShadowVisible: false,
           headerTitleStyle: {
             fontFamily: 'mon-sb',
           },
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="close-outline" size={24} />
+              <Ionicons name="close" size={24} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="(modals)/signup"
+        options={{
+          presentation: 'card',
+          title: 'Create an Account',
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            fontFamily: 'mon-sb',
+          },
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons name="arrow-back" size={24} />
             </TouchableOpacity>
           ),
         }}
@@ -293,6 +317,29 @@ function RootLayoutNav() {
                 // borderWidth: 1,
                 padding: 4,
               }}>
+              <Ionicons name="arrow-back" size={24} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="(modals)/payments"
+        options={{
+          presentation: 'modal',
+          headerTitle: 'Payment Method',
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="booking/book"
+        options={{
+          presentation: 'card',
+          headerTitle: 'Book',
+          headerShadowVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+            >
               <Ionicons name="arrow-back" size={24} />
             </TouchableOpacity>
           ),

@@ -69,11 +69,6 @@ const Page = () => {
     }
   };
 
-  const logOff = async () => {
-    signOut();
-    router.push('/(modals)/login');
-  };
-
   return (
     <SafeAreaView style={defaultStyles.container}>
         <View>
